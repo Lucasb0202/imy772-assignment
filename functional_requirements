@@ -1,0 +1,21 @@
+Functional Requirements of online calculator application:
+
+R1. Arithmetic Operations
+    R1.1. Calculator must be able to perform addition
+    R1.2. Calculator must be able to perform subtraction
+    R1.3. Calculator must be able to perform division
+    R1.4. Calculator must be able to perform multiplication
+
+R2. User Input
+    R2.1. Calculator can only take up to 2 digits
+    R2.2. User must be allowed to use on-screen buttons
+    R2.3. User input must be displayed in a visible area
+
+R3. Error Handling
+    R3.1. Negative answers must not be returned
+    R3.2. No answers with decimal places must be returned
+    R3.3. Only answers up to 4 digits must be returned
+
+R4. Real-time Calculation
+    R4.1. Answer must be computed after the ‘=’ button is pressed
+    R4.2. Results must be shown instantly
