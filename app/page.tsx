@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react";
+import { add, subtract, multiply, divide } from "../utils/calculator";
 
 export default function Home() {
   
@@ -66,7 +67,7 @@ export default function Home() {
       symbol: "-"
     },
     {
-      symbol: "X"
+      symbol: "x"
     },
     {
       symbol: "÷"
@@ -75,11 +76,40 @@ export default function Home() {
 
   const [displayValue, setDisplayValue] = useState("")
   const handleButtonClick = (symbol) => {
-    if (symbol === "AC") {
-      setDisplayValue("")
-    } else {
-      setDisplayValue(displayValue + symbol)
-    }
+    switch (symbol) {
+      case "=":
+        if (displayValue.indexOf("+") > -1) {
+          const arr = displayValue.split("+")
+          const res = add(arr[0], arr[1])
+          setDisplayValue(res)
+          console.log(res)
+          break;
+        }
+        if (displayValue.indexOf("-") > -1) {
+          const arr = displayValue.split("-")
+          const res = subtract(arr[0], arr[1])
+          setDisplayValue(res)
+          break;
+        }
+        if (displayValue.indexOf("x") > -1) {
+          const arr = displayValue.split("x")
+          const res = multiply(arr[0], arr[1])
+          setDisplayValue(res)
+          break;
+        }
+        if (displayValue.indexOf("÷") > -1) {
+          const arr = displayValue.split("÷")
+          const res = divide(arr[0], arr[1])
+          setDisplayValue(res)
+          break;
+        }
+      
+        default:
+          setDisplayValue(displayValue + symbol)
+      }
+      if (symbol == "AC"){
+        setDisplayValue("")
+      } 
   }
   return (
     <div className="h-screen w-screen flex justify-center items-center">
@@ -92,7 +122,7 @@ export default function Home() {
             {buttons.map((item, index) => (
               <button
                 key={index}
-                className={`cursor-pointer rounded-full ${item.symbol === "AC" || item.symbol == "=" || item.symbol == "X" || item.symbol == "÷" || item.symbol == "+" || item.symbol == "-" ? "bg-amber-600" : "bg-gray-800" } aspect-square w-full text-white text-xl`}
+                className={`cursor-pointer rounded-full ${item.symbol === "AC" || item.symbol == "=" || item.symbol == "x" || item.symbol == "÷" || item.symbol == "+" || item.symbol == "-" ? "bg-amber-600" : "bg-gray-800" } aspect-square w-full text-white text-xl`}
                 onClick={() => handleButtonClick(item.symbol)}
               >
                 <span className="text-2xl">
