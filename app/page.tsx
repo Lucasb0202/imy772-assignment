@@ -114,7 +114,7 @@ export default function Home() {
   return (
     <div className="h-screen w-screen flex justify-center items-center">
       <div className="border-2 border-white w-1/5 h-fit rounded-2xl bg-black overflow-hidden flex flex-col">
-        <div className="h-[100px] w-full text-white flex items-end justify-end px-4 py-2 text-3xl">
+        <div data-testid="display" className="h-[100px] w-full text-white flex items-end justify-end px-4 py-2 text-3xl">
           {displayValue}
         </div>
         <div className="w-full px-2 py-2">

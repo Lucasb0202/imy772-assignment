@@ -11,49 +11,55 @@ describe("Hexadecimal Calculator", () => {
     });
   });
 
-  // it("updates display when buttons are clicked", async () => {
-  //   const user = userEvent.setup();
-  //   render(<Home />);
+  it("updates display when buttons are clicked", async () => {
+    const user = userEvent.setup();
+    render(<Home />);
 
-  //   await user.click(screen.getByText("A"));
-  //   await user.click(screen.getByText("+"));
-  //   await user.click(screen.getByText("1"));
+    await user.click(screen.getByText("A"));
+    await user.click(screen.getByText("+"));
+    await user.click(screen.getByText("1"));
 
-  //   expect(screen.getByText("A+1")).toBeInTheDocument();
-  // });
+    expect(screen.getByText("A+1")).toBeInTheDocument();
+  });
 
-  // it("clears display on AC", async () => {
-  //   const user = userEvent.setup();
-  //   render(<Home />);
+  it("clears display on AC", async () => {
+    const user = userEvent.setup();
+    render(<Home />);
 
-  //   await user.click(screen.getByText("B"));
-  //   await user.click(screen.getByText("AC"));
+    await user.click(screen.getByText("B"));
+    await user.click(screen.getByText("AC"));
 
-  //   const display = screen.getByTestId((_, node) => node?.textContent === "");
-  //   expect(display).toBeInTheDocument()
-  // });
+    const display = screen.getByTestId("display");
+    expect(display).toHaveTextContent(""); 
+  });
 
-  // it("performs addition correctly", async () => {
-  //   const user = userEvent.setup();
-  //   render(<Home />);
+  it("performs addition correctly", async () => {
+    const user = userEvent.setup();
+    render(<Home />);
 
-  //   await user.click(screen.getByText("A"));
-  //   await user.click(screen.getByText("+"));
-  //   await user.click(screen.getByText("1"));
-  //   await user.click(screen.getByText("="));
+    await user.click(screen.getByText("A"));
+    await user.click(screen.getByText("+"));
+    await user.click(screen.getByText("1"));
+    await user.click(screen.getByText("="));
 
-  //   expect(screen.getByText("B")).toBeInTheDocument();
-  // });
+    expect(screen.getByText((content, element) => {
+      return element?.tagName.toLowerCase() === 'div' && content === "B";
+    })).toBeInTheDocument();
+    
+  });
 
-  // it("performs subtraction correctly", async () => {
-  //   const user = userEvent.setup();
-  //   render(<Home />);
+  it("performs subtraction correctly", async () => {
+    const user = userEvent.setup();
+    render(<Home />);
 
-  //   await user.click(screen.getByText("C"));
-  //   await user.click(screen.getByText("-"));
-  //   await user.click(screen.getByText("4"));
-  //   await user.click(screen.getByText("="));
+    await user.click(screen.getByText("C"));
+    await user.click(screen.getByText("-"));
+    await user.click(screen.getByText("4"));
+    await user.click(screen.getByText("="));
 
-  //   expect(screen.getByText("8")).toBeInTheDocument();
-  // });
+    expect(screen.getByText((content, element) => {
+      return element?.tagName.toLowerCase() === 'div' && content === "8";
+    })).toBeInTheDocument();
+    
+  });
 });
